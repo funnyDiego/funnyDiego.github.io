@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="funnyDiego">
+    
+    <title>
+        
+            hadoop 伪分布式部署 |
+        
+        Diego&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo_Diego.jpeg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/wy.jpeg","favicon":"/images/logo_Diego.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcom! Keep writing and Keep studying."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Diego&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">hadoop 伪分布式部署</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/wy.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">funnyDiego</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-05-23 19:36:05
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hadoop/">hadoop</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>学习 hadoop 主要参考 <a class="link"   target="_blank" rel="noopener" href="https://hadoop.apache.org/" >hadoop官网<i class="fas fa-external-link-alt"></i></a>，本文主要介绍伪分布式模式的搭建（单节点）及注意事项。</p>
+<p>hadoop版本：hadoop-3.2.2</p>
+<p>Java版本：jdk 1.8.0_45</p>
+<h4 id="1-从官网下载-Hadoop-二进制文件"><a href="#1-从官网下载-Hadoop-二进制文件" class="headerlink" title="1.从官网下载 Hadoop 二进制文件"></a>1.从官网下载 Hadoop 二进制文件</h4><p><a class="link"   target="_blank" rel="noopener" href="https://hadoop.apache.org/releases.html" >https://hadoop.apache.org/releases.html<i class="fas fa-external-link-alt"></i></a> 点击 3.2.2 版本 binary =&gt; 进入<br>=&gt; <a class="link"   target="_blank" rel="noopener" href="https://dlcdn.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz" >https://dlcdn.apache.org/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz<i class="fas fa-external-link-alt"></i></a> 下载 Hadoop 包</p>
+<h4 id="2-上传到-tmp-文件夹下（新建）"><a href="#2-上传到-tmp-文件夹下（新建）" class="headerlink" title="2.上传到 ~/tmp 文件夹下（新建）"></a>2.上传到 ~/tmp 文件夹下（新建）</h4><h4 id="3-创建用户-hadoop-和常规文件夹"><a href="#3-创建用户-hadoop-和常规文件夹" class="headerlink" title="3.创建用户 hadoop 和常规文件夹"></a>3.创建用户 hadoop 和常规文件夹</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata ~]# useradd hadoop</span><br><span class="line">[root@bigdata ~]# id hadoop</span><br><span class="line">uid=1001(hadoop) gid=1002(hadoop) groups=1002(hadoop)</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata ~]$ mkdir  app data lib script software source tmp</span><br><span class="line">[hadoop@bigdata ~]$ ll</span><br><span class="line">total 28</span><br><span class="line">drwxrwxr-x 4 hadoop hadoop 4096 Dec  5 20:43 app</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Nov 17 22:15 data</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Nov 17 22:15 lib</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Nov 17 22:15 script</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Nov 21 09:24 software</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Nov 17 22:15 source</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Dec  6 23:19 tmp</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-将-tmp-hadoop-3-2-2-tar-gz-拷贝到-hadoop-用户下的-software-文件夹"><a href="#4-将-tmp-hadoop-3-2-2-tar-gz-拷贝到-hadoop-用户下的-software-文件夹" class="headerlink" title="4.将 ~/tmp/hadoop-3.2.2.tar.gz 拷贝到 hadoop 用户下的 software 文件夹"></a>4.将 ~/tmp/hadoop-3.2.2.tar.gz 拷贝到 hadoop 用户下的 software 文件夹</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root 用户下</span><br><span class="line">[root@bigdata tmp]# mv hadoop-3.2.2.tar.gz /home/hadoop/software/</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-解压-tar-包到-app-目录下"><a href="#5-解压-tar-包到-app-目录下" class="headerlink" title="5.解压 tar 包到 ~/app 目录下"></a>5.解压 tar 包到 ~/app 目录下</h4><p>hadoop用户（-C：解压到指定目录，解压到当前目录不需要该参数）<br><code>[hadoop@bigdata software]$ tar -zxvf hadoop-3.2.2.tar.gz -C ../app/</code></p>
+<h4 id="6-创建软连接"><a href="#6-创建软连接" class="headerlink" title="6.创建软连接"></a>6.创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata app]$ ln -s hadoop-3.2.2 hadoop</span><br><span class="line">[hadoop@bigdata app]$ ll</span><br><span class="line">total 8</span><br><span class="line">lrwxrwxrwx 1 hadoop hadoop   12 Nov 21 09:38 hadoop -&gt; hadoop-3.2.2</span><br><span class="line">drwxr-xr-x 9 hadoop hadoop 4096 Dec  7 21:20 hadoop-3.2.2</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-配置-JAVA-HOME"><a href="#7-配置-JAVA-HOME" class="headerlink" title="7.配置 JAVA_HOME"></a>7.配置 JAVA_HOME</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata app]$ cd hadoop/etc/hadoop</span><br><span class="line">[hadoop@bigdata app]$ ll</span><br><span class="line">[hadoop@bigdata hadoop]$ pwd</span><br><span class="line">/home/hadoop/app/hadoop/etc/hadoop</span><br><span class="line"></span><br><span class="line">编辑配置文件，新增 JAVA_HOME </span><br><span class="line">[hadoop@bigdata app]$ vi hadoop-env.sh</span><br><span class="line">JAVA_HOME=/usr/java/jdk1.8.0_45</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-单机模式测试（无进程，用以debug）"><a href="#8-单机模式测试（无进程，用以debug）" class="headerlink" title="8.单机模式测试（无进程，用以debug）"></a>8.单机模式测试（无进程，用以debug）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ cd ../../</span><br><span class="line">[hadoop@bigdata hadoop]$ ls</span><br><span class="line">bin  etc  hadoop-3.2.2  include  lib  libexec  LICENSE.txt  NOTICE.txt  README.txt  sbin  share</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ mkdir input</span><br><span class="line">[hadoop@bigdata hadoop]$ cp etc/hadoop/*.xml input</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar grep input output &#x27;dfs[a-z.]+&#x27;</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ cd output/</span><br><span class="line">[hadoop@bigdata output]$ ls</span><br><span class="line">part-r-00000  _SUCCESS</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata output]$ cat part-r-00000 </span><br><span class="line">1	dfsadmin</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-伪分布部署"><a href="#9-伪分布部署" class="headerlink" title="9.伪分布部署"></a>9.伪分布部署</h4><p><strong>1）配置文件</strong></p>
+<p>[hadoop@bigdata hadoop]$ vi etc/hadoop/core-site.xml</p>
+<!-- xxxx  里面内容是注释或声明，可以删除 -->
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://bigdata:9000&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>[hadoop@bigdata hadoop]$ vi hdfs-site.xml</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"><span class="meta">--&gt;</span><span class="bash"></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">          &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">          &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>**2）配置 ssh 无密码登录（重要） **</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ ssh-keygen</span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (/home/hadoop/.ssh/id_rsa): </span><br><span class="line">/home/hadoop/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)? </span><br><span class="line">[hadoop@bigdata ~]$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">[hadoop@bigdata ~]$ chmod 0600 ~/.ssh/authorized_keys  ### 重中之重（赋予权限）</span><br><span class="line">[hadoop@bigdata ~]$ ll .ssh/authorized_keys </span><br><span class="line">-rw------- 1 hadoop hadoop 568 Nov 21 10:28 .ssh/authorized_keys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ssh 登录是相同的，如果没有写用户，默认是光标所在的用户，当前为 hadoop</span><br><span class="line">[hadoop@bigdata ~]$ ssh bigdata</span><br><span class="line">[hadoop@bigdata ~]$ ssh hadoop@bigdata</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata ~]$ ssh bigdata</span><br><span class="line"></span><br><span class="line">Welcome to Alibaba Cloud Elastic Compute Service !</span><br><span class="line"></span><br><span class="line">Last login: Tue Dec  7 21:20:21 2021</span><br><span class="line">[hadoop@bigdata ~]$ </span><br><span class="line"></span><br><span class="line">如上，则无密码登录设置成功。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3）格式化</strong><br>[hadoop@bigdata hadoop]$ bin/hdfs namenode -format</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">2021-12-07 23:41:21,660 INFO namenode.FSImage: Allocated new BlockPoolId: BP-1768541083-172.30.73.2-1638891681652</span><br><span class="line">2021-12-07 23:41:21,675 INFO common.Storage: Storage directory /tmp/hadoop-hadoop/dfs/name has been successfully formatted.</span><br><span class="line">2021-12-07 23:41:21,699 INFO namenode.FSImageFormatProtobuf: Saving image file /tmp/hadoop-hadoop/dfs/name/current/fsimage.ckpt_0000000000000000000 using no compression</span><br><span class="line">2021-12-07 23:41:21,791 INFO namenode.FSImageFormatProtobuf: Image file /tmp/hadoop-hadoop/dfs/name/current/fsimage.ckpt_0000000000000000000 of size 401 bytes saved in 0 seconds .</span><br><span class="line">2021-12-07 23:41:21,805 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid &gt;= 0</span><br><span class="line">2021-12-07 23:41:21,810 INFO namenode.FSImage: FSImageSaver clean checkpoint: txid=0 when meet shutdown.</span><br><span class="line">2021-12-07 23:41:21,810 INFO namenode.NameNode: SHUTDOWN_MSG: </span><br><span class="line">/************************************************************</span><br><span class="line">SHUTDOWN_MSG: Shutting down NameNode at bigdata/172.30.73.2</span><br><span class="line">************************************************************/</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>4）启动 NameNode 和 DataNode</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ sbin/start-dfs.sh </span><br><span class="line">Starting namenodes on [bigdata]</span><br><span class="line">Starting datanodes</span><br><span class="line">localhost: Warning: Permanently added &#x27;localhost&#x27; (ECDSA) to the list of known hosts.</span><br><span class="line">Starting secondary namenodes [bigdata]</span><br></pre></td></tr></table></figure>
+
+<p>查看进程是否启动成功，jps，但是不保险，最好使用 ps -ef 查看为准</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ jps</span><br><span class="line">1028139 DataNode</span><br><span class="line">1028010 NameNode</span><br><span class="line">1028375 SecondaryNameNode</span><br><span class="line">1028533 Jps</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ ps -ef | grep hadoop</span><br><span class="line"></span><br><span class="line">hadoop   1028010       1  2 23:47 ?        00:00:07 /usr/java/jdk1.8.0_45/bin/java -Dproc_namenode -Djava.net.preferIPv4Stack=true -Dhdfs.audit.logger=INFO,NullAppender -Dhadoop.security.logger=INFO,RFAS -Dyarn.log.dir=/home/hadoop/app/hadoo-3.2.2/logs -Dyarn.log.file=hadoop-hadoop-namenode-bigdata.log -Dyarn.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dyarn.root.logger=INFO,console -Djava.library.path=/home/hadoop/app/hadoop-3.2.2/lib/native -Dhadoop.log.dir=/home/hadoop/app/hadoo-3.2.2/logs -Dhadoop.log.file=hadoop-hadoop-namenode-bigdata.log -Dhadoop.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dhadoo.id.str=hadoop -Dhadoop.root.logger=INFO,RFA -Dhadoop.policy.file=hadoop-policy.xml org.apache.hadoop.hdfs.server.namenode.NameNode</span><br><span class="line">hadoop   1028139       1  1 23:47 ?        00:00:06 /usr/java/jdk1.8.0_45/bin/java -Dproc_datanode -Djava.net.preferIPv4Stack=true -Dhadoop.security.logger=ERROR,RFAS -Dyarn.log.dir=/home/hadoop/app/hadoop-3.2.2/logs -Dyarn.log.file=hadoop-hadoop-datanode-bigdata.log -Dyarn.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dyarn.root.logger=INFO,console -Djava.library.path=/home/hadoop/app/hadoop-3.2.2/lib/native -Dhadoop.log.dir=/home/hadoop/app/hadoop-3.2.2/logs -Dhadoop.log.file=hadoophadoop-datanode-bigdata.log -Dhadoop.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dhadoop.id.str=hadoop -Dhadoop.root.logger=INFO,RFA -Dhadoop.policy.file=hadoop-policy.xml org.apache.hadoop.hdfs.server.datanode.DataNode</span><br><span class="line">hadoop   1028375       1  1 23:47 ?        00:00:04 /usr/java/jdk1.8.0_45/bin/java -Dproc_secondarynamenode -Djava.net.preferIPv4Stack=true -Dhdfs.audit.logger=INFO,NullAppender -Dhadoop.security.logger=INFO,RFAS -Dyarn.log.dir=/home/hadoop/app/hadoop-3.2.2/logs -Dyarn.log.file=hadoop-hadoop-secondarynamenode-bigdata.log -Dyarn.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dyarn.root.logger=INFO,console -Djava.library.path=/home/hadoop/app/hadoop-3.2.2/lib/native -Dhadoop.log.dir=/home/hadoop/app/hadoop-3.2.2/logs -Dhadoop.log.file=hadoop-hadoop-secondarynamenode-bigdata.log -Dhadoop.home.dir=/home/hadoop/app/hadoop-3.2.2 -Dhadoop.id.str=hadoop -Dhadoop.root.logger=INFO,RFA -Dhadoop.policy.file=hadoop-policy.xml org.apache.hadoop.hdfs.server.namenode.SecondaryNameNode</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>5）访问 Web 界面</strong><br>    hadoop 启动后，访问 hdfs 系统：<a class="link"   target="_blank" rel="noopener" href="http://localhost:9870/" >http://localhost:9870/<i class="fas fa-external-link-alt"></i></a><br>    根据实际使用的云服务器地址： http://公网IP:9870</p>
+<p><strong>6）创建 HDFS 文件夹，执行 Mapreduce Job（形成 hdfs 文件系统，不同于 linux 文件系统）</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -mkdir /user</span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -ls /</span><br><span class="line">Found 1 items</span><br><span class="line">drwxr-xr-x   - hadoop supergroup          0 2021-12-08 00:07 /user</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -mkdir /user/hadoop</span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -mkdir input</span><br><span class="line">前面没有绝对路径，默认的是当前用户的家目录下面</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -ls /user/hadoop/</span><br><span class="line">Found 1 items</span><br><span class="line">drwxr-xr-x   - hadoop supergroup          0 2021-12-08 00:09 /user/hadoop/input</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>7）拷贝文件到 hdfs 上，执行 mapreduce job</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -put etc/hadoop/*.xml input</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ bin/hdfs dfs -ls /user/hadoop/input</span><br><span class="line">Found 9 items</span><br><span class="line">-rw-r--r--   1 hadoop supergroup       9213 2021-12-08 00:12 /user/hadoop/input/capacity-scheduler.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        882 2021-12-08 00:12 /user/hadoop/input/core-site.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup      11392 2021-12-08 00:12 /user/hadoop/input/hadoop-policy.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        871 2021-12-08 00:12 /user/hadoop/input/hdfs-site.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        620 2021-12-08 00:12 /user/hadoop/input/httpfs-site.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup       3518 2021-12-08 00:12 /user/hadoop/input/kms-acls.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        682 2021-12-08 00:12 /user/hadoop/input/kms-site.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        758 2021-12-08 00:12 /user/hadoop/input/mapred-site.xml</span><br><span class="line">-rw-r--r--   1 hadoop supergroup        690 2021-12-08 00:12 /user/hadoop/input/yarn-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>提交到服务器上执行 mapreduce job<br><code>[hadoop@bigdata hadoop]$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar grep input output &#39;dfs[a-z.]+&#39;</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">将执行后的结果文件夹下载到 linux 系统（bin/hdfs dfs -get 命令）</span><br><span class="line">[hadoop@bigdata hadoop]$ ls</span><br><span class="line">bin  etc  hadoop-3.2.2  include  input  lib  libexec  LICENSE.txt  logs  NOTICE.txt  README.txt  sbin  share</span><br><span class="line">[hadoop@bigdata hadoop]$  bin/hdfs dfs -get output output</span><br><span class="line">[hadoop@bigdata hadoop]$ ls</span><br><span class="line">bin  etc  hadoop-3.2.2  include  input  lib  libexec  LICENSE.txt  logs  NOTICE.txt  output  README.txt  sbin  share</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ ll output/</span><br><span class="line">total 4</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop 29 Dec  8 00:19 part-r-00000</span><br><span class="line">-rw-r--r-- 1 hadoop hadoop  0 Dec  8 00:19 _SUCCESS</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata hadoop]$ cat output/*</span><br><span class="line">1	dfsadmin</span><br><span class="line">1	dfs.replication</span><br><span class="line"></span><br><span class="line">相较于单机模式的运行结果，这里多了一个 dfs.replication，是因为 xml 配置文件里新增了副本设置。</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/04/17/%E8%87%AA%E8%B4%AD%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%81%AD%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF%E5%A6%82%E4%BD%95%E8%87%AA%E6%95%91/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">自购阿里云服务器遭恶意挖矿如何自救</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2015/09/18/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">mysql 二进制部署</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2014</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">funnyDiego</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD-Hadoop-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">1.从官网下载 Hadoop 二进制文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8A%E4%BC%A0%E5%88%B0-tmp-%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%EF%BC%88%E6%96%B0%E5%BB%BA%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2.上传到 ~&#x2F;tmp 文件夹下（新建）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7-hadoop-%E5%92%8C%E5%B8%B8%E8%A7%84%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">3.</span> <span class="nav-text">3.创建用户 hadoop 和常规文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%B0%86-tmp-hadoop-3-2-2-tar-gz-%E6%8B%B7%E8%B4%9D%E5%88%B0-hadoop-%E7%94%A8%E6%88%B7%E4%B8%8B%E7%9A%84-software-%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">4.</span> <span class="nav-text">4.将 ~&#x2F;tmp&#x2F;hadoop-3.2.2.tar.gz 拷贝到 hadoop 用户下的 software 文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%A7%A3%E5%8E%8B-tar-%E5%8C%85%E5%88%B0-app-%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="nav-number">5.</span> <span class="nav-text">5.解压 tar 包到 ~&#x2F;app 目录下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%9B%E5%BB%BA%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">6.创建软连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E9%85%8D%E7%BD%AE-JAVA-HOME"><span class="nav-number">7.</span> <span class="nav-text">7.配置 JAVA_HOME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E6%B5%8B%E8%AF%95%EF%BC%88%E6%97%A0%E8%BF%9B%E7%A8%8B%EF%BC%8C%E7%94%A8%E4%BB%A5debug%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">8.单机模式测试（无进程，用以debug）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E4%BC%AA%E5%88%86%E5%B8%83%E9%83%A8%E7%BD%B2"><span class="nav-number">9.</span> <span class="nav-text">9.伪分布部署</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@
     
     <title>
         
-            Archive |
+            自购阿里云服务器遭恶意挖矿如何自救 |
         
         Diego&#39;s Blog
     </title>
@@ -70,7 +70,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/archives"
                             >
                                 归档
@@ -128,7 +128,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/archives">归档</a>
                 </li>
             
@@ -163,65 +163,148 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="archive-container ">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">自购阿里云服务器遭恶意挖矿如何自救</span>
+        </div>
+
         
-<div class="archive-list-container">
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/wy.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">funnyDiego</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2020-04-17 22:17:58
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2020</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
                 
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2020/04/17/%E8%87%AA%E8%B4%AD%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%81%AD%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF%E5%A6%82%E4%BD%95%E8%87%AA%E6%95%91/"
-                        >自购阿里云服务器遭恶意挖矿如何自救</a>
-                        <span class="article-date">04-17</span>
+                    <li>
+                        <a href="/tags/%E9%98%BF%E9%87%8CECS/">阿里ECS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%97%85%E6%AF%92/">病毒</a>&nbsp;
                     </li>
                 
             </ul>
-        </section>
+        </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2016</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2016/05/23/hadoop%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"
-                        >hadoop 伪分布式部署</a>
-                        <span class="article-date">05-23</span>
-                    </li>
-                
-            </ul>
-        </section>
+
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2015</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2015/09/18/mysql%E4%BA%8C%E8%BF%9B%E5%88%B6%E9%83%A8%E7%BD%B2/"
-                        >mysql 二进制部署</a>
-                        <span class="article-date">09-18</span>
-                    </li>
-                
-            </ul>
-        </section>
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>412 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>如果在未购买云安全中心服务的情况下遇到挖矿病毒，可以采取如下措施排查和处理（本操作以Linux系统为例）：</p>
+<ol>
+<li><p>查看挖矿进程的执行文件链接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /proc/xxx/exe           // xxx表示该进程的PID。</span><br></pre></td></tr></table></figure></li>
+<li><p>清除挖矿进程的执行文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/hadoop/app/hadoop-3.2.2/sbin/ax957x/kthreaddk</span><br></pre></td></tr></table></figure></li>
+<li><p>在高CPU消耗（比如：398%）的进程中定位到挖矿进程，并杀死该进程。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 85469</span><br></pre></td></tr></table></figure></li>
+<li><p>检查您服务器的防火墙中是否存在挖矿程序的矿池地址。</p>
+<ol>
+<li><p>执行以下命令查看是否存在业务范围之外的可疑通信地址和开放端口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure></li>
+<li><p>执行以下命令清除恶意矿池地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>执行以下命令排查是否存在定时任务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
+
+<p>您可以根据排查的结果，对可疑的定时任务文件进行处理，防止二次入侵。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 编辑定时任务，删除</span><br><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"># 删除恶意文件定时任务</span><br><span class="line">crontab -r</span><br></pre></td></tr></table></figure></li>
+<li><p>执行以下命令检查SSH公钥中是否存在挖矿病毒，防止出现持续后门。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .ssh/authorized_keys</span><br></pre></td></tr></table></figure></li>
+<li><p>查看其他服务器中是否存在挖矿行为，防止挖矿病毒重复感染内网中的其他服务器。</p>
+</li>
+<li><p>本人的阿里云服务器恶意程序有2个：root 用户和 hadoop 用户下都有恶意文件，分别执行上述 1 - 7 的操作，执行完成，top 命令监控 CPU，或者通过阿里云安全中心管理控制台查看是否仍有恶意程序启动。</p>
+</li>
+</ol>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2016/05/23/hadoop%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">hadoop 伪分布式部署</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
     </div>
 </div>
+
 
                 
             </div>
@@ -265,6 +348,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -310,6 +414,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -365,6 +477,8 @@
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
     
 </div>
 

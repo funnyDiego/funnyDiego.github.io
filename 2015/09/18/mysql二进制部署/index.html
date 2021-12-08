@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="funnyDiego">
+    
+    <title>
+        
+            mysql 二进制部署 |
+        
+        Diego&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo_Diego.jpeg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/wy.jpeg","favicon":"/images/logo_Diego.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcom! Keep writing and Keep studying."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Diego&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">mysql 二进制部署</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/wy.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">funnyDiego</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2015-09-18 16:11:27
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/mysql/">mysql</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>学习 hadoop 主要参考 <a class="link"   target="_blank" rel="noopener" href="https://hadoop.apache.org/" >hadoop官网<i class="fas fa-external-link-alt"></i></a>，本文主要介绍伪分布式模式的搭建（单节点）及注意事项。</p>
+<p>本文介绍 MySQL 的二进制部署，参考资料：<a class="link"   target="_blank" rel="noopener" href="https://github.com/Hackeruncle/mysql%E3%80%82" >https://github.com/Hackeruncle/mysql。<i class="fas fa-external-link-alt"></i></a></p>
+<p>MySQL 版本：5.6.23</p>
+<h4 id="1-上传下载好的tar包"><a href="#1-上传下载好的tar包" class="headerlink" title="1.上传下载好的tar包"></a>1.上传下载好的tar包</h4><p><code>rz mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz</code></p>
+<h4 id="2-移动到-usr-local-目录下"><a href="#2-移动到-usr-local-目录下" class="headerlink" title="2.移动到 /usr/local 目录下"></a>2.移动到 /usr/local 目录下</h4><p><code>mv ./mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz /usr/local/</code></p>
+<h4 id="3-查看是否已经安装MySQL（比如：系统自带）"><a href="#3-查看是否已经安装MySQL（比如：系统自带）" class="headerlink" title="3.查看是否已经安装MySQL（比如：系统自带）"></a>3.查看是否已经安装MySQL（比如：系统自带）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata local]# ps -ef | grep mysql</span><br><span class="line">root     1021625  959563  0 22:39 pts/1    00:00:00 grep --color=auto mysql</span><br><span class="line"></span><br><span class="line">rpm -qa | grep -i mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-tar包解压，创建软连接"><a href="#4-tar包解压，创建软连接" class="headerlink" title="4.tar包解压，创建软连接"></a>4.tar包解压，创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata local]# tar xzvf mysql-5.6.23-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line">[root@bigdata local]# ln -s mysql-5.6.23-linux-glibc2.5-x86_64 mysql</span><br><span class="line">[root@bigdata local]# ll</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-创建-user-和-group"><a href="#5-创建-user-和-group" class="headerlink" title="5.创建 user 和 group"></a>5.创建 user 和 group</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata local]# groupadd -g 101 dba</span><br><span class="line">[root@bigdata local]# useradd -u 514 -g dba -G root -d /usr/local/mysql mysqladmin</span><br><span class="line">useradd: warning: the home directory already exists.</span><br><span class="line">Not copying any file from skel directory into it.</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-创建-MySQL-配置文件"><a href="#6-创建-MySQL-配置文件" class="headerlink" title="6.创建 MySQL 配置文件"></a>6.创建 MySQL 配置文件</h4><p>vi /etc/my.cnf</p>
+<p>进入编辑模式，粘贴下述类容（生产环境调优时，修改 innodb_buffer_pool_size = 2048M 即可，一般6G、8G、12G 就足以）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port            = 3306</span><br><span class="line">socket          = /usr/local/mysql/data/mysql.sock</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">port            = 3306</span><br><span class="line">socket          = /usr/local/mysql/data/mysql.sock</span><br><span class="line"></span><br><span class="line">skip-external-locking</span><br><span class="line">key_buffer_size = 256M</span><br><span class="line">sort_buffer_size = 2M</span><br><span class="line">read_buffer_size = 2M</span><br><span class="line">read_rnd_buffer_size = 4M</span><br><span class="line">query_cache_size= 32M</span><br><span class="line">max_allowed_packet = 16M</span><br><span class="line">myisam_sort_buffer_size=128M</span><br><span class="line">tmp_table_size=32M</span><br><span class="line"></span><br><span class="line">table_open_cache = 512</span><br><span class="line">thread_cache_size = 8</span><br><span class="line">wait_timeout = 86400</span><br><span class="line">interactive_timeout = 86400</span><br><span class="line">max_connections = 600</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Try number of CPU<span class="string">&#x27;s*2 for thread_concurrency</span></span></span><br><span class="line"></span><br><span class="line">thread_concurrency = 32</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">isolation level and default engine</span></span> </span><br><span class="line">default-storage-engine = INNODB</span><br><span class="line">transaction-isolation = READ-COMMITTED</span><br><span class="line"></span><br><span class="line">server-id  = 1</span><br><span class="line">basedir     = /usr/local/mysql</span><br><span class="line">datadir     = /usr/local/mysql/data</span><br><span class="line">pid-file     = /usr/local/mysql/data/hostname.pid</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">open performance schema</span></span></span><br><span class="line">log-warnings</span><br><span class="line">sysdate-is-now</span><br><span class="line"></span><br><span class="line">binlog_format = MIXED</span><br><span class="line">log_bin_trust_function_creators=1</span><br><span class="line">log-error  = /usr/local/mysql/data/hostname.err</span><br><span class="line">log-bin=/usr/local/mysql/arch/mysql-bin</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">other logs</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">general_log =1</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">general_log_file  = /usr/local/mysql/data/general_log.err</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">slow_query_log=1</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">slow_query_log_file=/usr/local/mysql/data/slow_log.err</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">for replication slave</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">log-slave-updates</span></span> </span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">sync_binlog = 1</span></span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">for innodb options</span></span> </span><br><span class="line">innodb_data_home_dir = /usr/local/mysql/data/</span><br><span class="line">innodb_data_file_path = ibdata1:500M:autoextend</span><br><span class="line">innodb_log_group_home_dir = /usr/local/mysql/arch</span><br><span class="line">innodb_log_files_in_group = 2</span><br><span class="line">innodb_log_file_size = 200M</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string"> tun prod</span></span></span><br><span class="line"></span><br><span class="line">innodb_buffer_pool_size = 2048M</span><br><span class="line">innodb_additional_mem_pool_size = 50M</span><br><span class="line">innodb_log_buffer_size = 16M</span><br><span class="line"></span><br><span class="line">innodb_lock_wait_timeout = 100</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">innodb_thread_concurrency = 0</span></span></span><br><span class="line">innodb_flush_log_at_trx_commit = 1</span><br><span class="line">innodb_locks_unsafe_for_binlog=1</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">innodb io features: add for mysql5.5.8</span></span></span><br><span class="line">performance_schema</span><br><span class="line">innodb_read_io_threads=4</span><br><span class="line">innodb-write-io-threads=4</span><br><span class="line">innodb-io-capacity=200</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">purge threads change default(0) to 1 for purge</span></span></span><br><span class="line">innodb_purge_threads=1</span><br><span class="line">innodb_use_native_aio=on</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="string">case-sensitive file names and separate tablespace</span></span></span><br><span class="line">innodb_file_per_table = 1</span><br><span class="line">lower_case_table_names=1</span><br><span class="line"></span><br><span class="line">[mysqldump]</span><br><span class="line">quick</span><br><span class="line">max_allowed_packet = 16M</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">no-auto-rehash</span><br><span class="line"></span><br><span class="line">[mysqlhotcopy]</span><br><span class="line">interactive-timeout</span><br><span class="line"></span><br><span class="line">[myisamchk]</span><br><span class="line">key_buffer_size = 256M</span><br><span class="line">sort_buffer_size = 256M</span><br><span class="line">read_buffer = 2M</span><br><span class="line">write_buffer = 2M</span><br></pre></td></tr></table></figure>
+
+
+<p>保存，退出，该配置文件已创建成功</p>
+<h4 id="7-改变配置文件权限，第一次安装"><a href="#7-改变配置文件权限，第一次安装" class="headerlink" title="7.改变配置文件权限，第一次安装"></a>7.改变配置文件权限，第一次安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata local]# chown mysqladmin:dba /etc/my.cnf</span><br><span class="line">[root@bigdata local]# chmod 640 /etc/my.cnf</span><br><span class="line"></span><br><span class="line">[root@bigdata local]# chown -R mysqladmin:dba /usr/local/mysql</span><br><span class="line">[root@bigdata local]# chmod -R 755 /usr/local/mysql</span><br><span class="line"></span><br><span class="line">[root@bigdata local]# chown -R mysqladmin:dba /usr/local/mysql-5.6.23-linux-glibc2.5-x86_64</span><br><span class="line"></span><br><span class="line">[root@bigdata local]# su - mysqladmin</span><br><span class="line">[mysqladmin@bigdata ~]$ pwd</span><br><span class="line">/usr/local/mysql</span><br></pre></td></tr></table></figure>
+
+<p>新建放置 binlog 文件夹 arch<br>[mysqladmin@bigdata ~]$ mkdir arch</p>
+<p>执行命令 scripts/mysql_install_db</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqladmin@bigdata ~]$ scripts/mysql_install_db</span><br><span class="line">Installing MySQL system tables..../bin/mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>退到 root 用户安装 libaio<br>[root@bigdata local]# yum -y install libaio</p>
+<p>再次安装 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">[mysqladmin@bigdata ~]$ scripts/mysql_install_db --user=mysqladmin --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data</span><br><span class="line">Installing MySQL system tables...2021-12-05 23:20:09 0 [Warning] &#x27;THREAD_CONCURRENCY&#x27; is deprecated and will be removed in a future release.</span><br><span class="line">2021-12-05 23:20:09 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">Filling help tables...2021-12-05 23:20:20 0 [Warning] &#x27;THREAD_CONCURRENCY&#x27; is deprecated and will be removed in a future release.</span><br><span class="line">2021-12-05 23:20:20 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">To start mysqld at boot time you have to copy</span><br><span class="line">support-files/mysql.server to the right place for your system</span><br><span class="line"></span><br><span class="line">PLEASE REMEMBER TO SET A PASSWORD FOR THE MySQL root USER !</span><br><span class="line">To do so, start the server, then issue the following commands:</span><br><span class="line"></span><br><span class="line">  /usr/local/mysql/bin/mysqladmin -u root password &#x27;new-password&#x27;</span><br><span class="line">  /usr/local/mysql/bin/mysqladmin -u root -h bigdata password &#x27;new-password&#x27;</span><br><span class="line"></span><br><span class="line">Alternatively you can run:</span><br><span class="line"></span><br><span class="line">  /usr/local/mysql/bin/mysql_secure_installation</span><br><span class="line"></span><br><span class="line">which will also give you the option of removing the test</span><br><span class="line">databases and anonymous user created by default.  This is</span><br><span class="line">strongly recommended for production servers.</span><br><span class="line"></span><br><span class="line">See the manual for more instructions.</span><br><span class="line"></span><br><span class="line">You can start the MySQL daemon with:</span><br><span class="line"></span><br><span class="line">  cd . ; /usr/local/mysql/bin/mysqld_safe &amp;</span><br><span class="line"></span><br><span class="line">You can test the MySQL daemon with mysql-test-run.pl</span><br><span class="line"></span><br><span class="line">  cd mysql-test ; perl mysql-test-run.pl</span><br><span class="line"></span><br><span class="line">Please report any problems at http://bugs.mysql.com/</span><br><span class="line"></span><br><span class="line">The latest information about MySQL is available on the web at</span><br><span class="line"></span><br><span class="line">  http://www.mysql.com</span><br><span class="line"></span><br><span class="line">Support MySQL by buying support/licenses at http://shop.mysql.com</span><br><span class="line"></span><br><span class="line">WARNING: Found existing config file /usr/local/mysql/my.cnf on the system.</span><br><span class="line">Because this file might be in use, it was not replaced,</span><br><span class="line">but was used in bootstrap (unless you used --defaults-file)</span><br><span class="line">and when you later start the server.</span><br><span class="line">The new default config file was created as /usr/local/mysql/my-new.cnf,</span><br><span class="line">please compare it with your file and take the changes you need.</span><br><span class="line"></span><br><span class="line">WARNING: Default config file /etc/my.cnf exists on the system</span><br><span class="line">This file will be read by default by the MySQL server</span><br><span class="line">If you do not want to use this, either remove it, or use the</span><br><span class="line">--defaults-file argument to mysqld_safe when starting the server</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-配置-mysql-服务，设置开机自启动"><a href="#8-配置-mysql-服务，设置开机自启动" class="headerlink" title="8.配置 mysql 服务，设置开机自启动"></a>8.配置 mysql 服务，设置开机自启动</h4><p>root 用户下：</p>
+<p>将服务文件拷贝到init.d下，并重命名为mysql</p>
+<p><code>[root@bigdata mysql]# cp support-files/mysql.server /etc/rc.d/init.d/mysql</code></p>
+<p>赋予可执行权限</p>
+<p><code>[root@bigdata mysql]# chmod +x /etc/rc.d/init.d/mysql</code><br><code>[root@bigdata mysql]# ll /etc/rc.d/init.d/mysql</code><br><code>-rwxr-xr-x 1 root root 10880 Dec  5 23:27 /etc/rc.d/init.d/mysql</code></p>
+<p>如果之前部署过 mysql 服务，可以删除服务</p>
+<p><code>[root@bigdata mysql]# chkconfig --del mysql</code></p>
+<p>第一次安装时，添加服务</p>
+<p><code>[root@bigdata mysql]# chkconfig --add mysql</code><br><code>[root@bigdata mysql]# chkconfig --level 345 mysql on</code></p>
+<p><code>[root@bigdata mysql]# vi /etc/rc.local</code></p>
+<p>进入编辑模式，新增内容：</p>
+<p><code>su - mysqladmin -c &quot;/etc/init.d/mysql start --federated&quot;</code></p>
+<h4 id="9-启动-mysql-服务，查看服务和监听状态"><a href="#9-启动-mysql-服务，查看服务和监听状态" class="headerlink" title="9.启动 mysql 服务，查看服务和监听状态"></a>9.启动 mysql 服务，查看服务和监听状态</h4><p>切换用户 mysqladmin</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata mysql]# su - mysqladmin</span><br><span class="line">[mysqladmin@bigdata ~]$ rm -rf my.cnf</span><br><span class="line"></span><br><span class="line">[mysqladmin@bigdata ~]$ which mysqld_safe</span><br><span class="line">~/bin/mysqld_safe</span><br></pre></td></tr></table></figure>
+
+<p>启动 mysql 服务和查看 mysql 服务状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqladmin@bigdata ~]$ service mysql start</span><br><span class="line">Starting MySQL.                                            [  OK  ]</span><br><span class="line">[mysqladmin@bigdata ~]$ service mysql status</span><br><span class="line">MySQL running (1022830)                                    [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<p>登录 mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[mysqladmin@bigdata ~]$ mysql -uroot -p</span><br><span class="line">Enter password: </span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 1</span><br><span class="line">Server version: 5.6.23-log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">mysql&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看 mysql 进程，获取 PID：1022889</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata local]#  ps -ef | grep mysqld</span><br><span class="line">mysqlad+ 1022153       1  0 23:40 pts/0    00:00:00 /bin/sh /usr/local/mysql/bin/mysqld_safe --datadir=/usr/local/mysql/data --pid-file=/usr/local/mysql/data/hostname.pid</span><br><span class="line">mysqlad+ 1022830 1022153  0 23:40 pts/0    00:00:00 /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data --plugin-dir=/usr/local/mysql/lib/plugin --log-error=/usr/local/mysql/data/hostname.err --pid-file=/usr/local/mysql/data/hostname.pid --socket=/usr/local/mysql/data/mysql.sock --port=3306</span><br><span class="line">root     1022889  959563  0 23:43 pts/1    00:00:00 grep --color=auto mysqld</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看端口号：3306</p>
+<p>``[root@bigdata local]# netstat -ntlp | grep 1022830<code> tcp6       0      0 :::3306                 :::*                    LISTEN      1022830/mysqld</code> </p>
+<h4 id="10-登录-mysql"><a href="#10-登录-mysql" class="headerlink" title="10.登录 mysql"></a>10.登录 mysql</h4><p>[mysqladmin@bigdata ~]$ mysql</p>
+<p>有密码的时候</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[mysqladmin<span class="variable">@bigdata</span> <span class="operator">~</span>]$ mysql <span class="operator">-</span>uroot <span class="operator">-</span>p</span><br><span class="line">password:</span><br><span class="line"></span><br><span class="line">Welcome <span class="keyword">to</span> the MySQL monitor.  Commands <span class="keyword">end</span> <span class="keyword">with</span> ; <span class="keyword">or</span> \g.</span><br><span class="line">Your MySQL connection id <span class="keyword">is</span> <span class="number">2</span></span><br><span class="line">Server version: <span class="number">5.6</span><span class="number">.23</span><span class="operator">-</span>log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) <span class="number">2000</span>, <span class="number">2015</span>, Oracle <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> its affiliates. <span class="keyword">All</span> rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle <span class="keyword">is</span> a registered trademark <span class="keyword">of</span> Oracle Corporation <span class="keyword">and</span><span class="operator">/</span><span class="keyword">or</span> its</span><br><span class="line">affiliates. Other names may be trademarks <span class="keyword">of</span> their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> <span class="keyword">or</span> <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> help. Type <span class="string">&#x27;\c&#x27;</span> <span class="keyword">to</span> clear the <span class="keyword">current</span> input statement.</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> databases;  <span class="comment">-- 此处是 4 个数据库</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> Database           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> information_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> performance_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> test               <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> use test;</span><br><span class="line">Database changed</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-修改密码和清理用户"><a href="#11-修改密码和清理用户" class="headerlink" title="11.修改密码和清理用户"></a>11.修改密码和清理用户</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> use mysql;</span><br><span class="line">Database changed</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------+</span></span><br><span class="line"><span class="operator">|</span> Tables_in_mysql           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------+</span></span><br><span class="line"><span class="operator">|</span> columns_priv              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> db                        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> event                     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> func                      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> general_log               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> help_category             <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> help_keyword              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> help_relation             <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> help_topic                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> innodb_index_stats        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> innodb_table_stats        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> ndb_binlog_index          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> plugin                    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> proc                      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> procs_priv                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> proxies_priv              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> servers                   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> slave_master_info         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> slave_relay_log_info      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> slave_worker_info         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> slow_log                  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> tables_priv               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> time_zone                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> time_zone_leap_second     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> time_zone_name            <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> time_zone_transition      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> time_zone_transition_type <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">user</span>                      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------------+</span></span><br><span class="line"><span class="number">28</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">user</span>,password,host <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+----------+-----------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">user</span> <span class="operator">|</span> password <span class="operator">|</span> host      <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+----------+-----------+</span></span><br><span class="line"><span class="operator">|</span> root <span class="operator">|</span>          <span class="operator">|</span> localhost <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> root <span class="operator">|</span>          <span class="operator">|</span> bigdata   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> root <span class="operator">|</span>          <span class="operator">|</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> root <span class="operator">|</span>          <span class="operator">|</span> ::<span class="number">1</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="operator">|</span>          <span class="operator">|</span> localhost <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="operator">|</span>          <span class="operator">|</span> bigdata   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+----------+-----------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> update <span class="keyword">user</span> <span class="keyword">set</span> password<span class="operator">=</span>password(<span class="string">&#x27;diego@2012&#x27;</span>) <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">4</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">4</span>  Changed: <span class="number">4</span>  Warnings: <span class="number">0</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> host,<span class="keyword">user</span>,password <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> host      <span class="operator">|</span> <span class="keyword">user</span> <span class="operator">|</span> password                                  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> localhost <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> bigdata   <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> ::<span class="number">1</span>       <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> localhost <span class="operator">|</span>      <span class="operator">|</span>                                           <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> bigdata   <span class="operator">|</span>      <span class="operator">|</span>                                           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">user</span><span class="operator">=</span><span class="string">&#x27;&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> host,<span class="keyword">user</span>,password <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> host      <span class="operator">|</span> <span class="keyword">user</span> <span class="operator">|</span> password                                  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> localhost <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> bigdata   <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> ::<span class="number">1</span>       <span class="operator">|</span> root <span class="operator">|</span> <span class="operator">*</span><span class="number">90</span>F81E137FE350CE49222B0DB5A9DB85EC51CF07 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------+------+-------------------------------------------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> flush privileges;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="12-修改配置文件-bashrc"><a href="#12-修改配置文件-bashrc" class="headerlink" title="12.修改配置文件 .bashrc"></a>12.修改配置文件 .bashrc</h4><p>切换到 mysqladmin 用户，编辑配置文件 ~/.bashrc<br><code>[mysqladmin@bigdata ~]$ vi .bashrc</code><br>新增环境变量配置<br><code>export MYSQL_HOME=/usr/local/mysql</code><br><code>export PATH=$MYSQL_HOME/bin:$PATH</code></p>
+<p><code>[mysqladmin@bigdata ~]$ source .bashrc</code><br><code>[mysqladmin@bigdata ~]$ echo $MYSQL_HOME</code><br><code>/usr/local/mysql</code></p>
+<hr>
+<h4 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h4><p>修改配置文件 ~/.bashrc</p>
+<p><code>[mysqladmin@bigdata ~]$ vi .bashrc</code></p>
+<p>新增如下配置<br><code>PS1=uname -n&quot;:&quot;&#39;$USER&#39;&quot;:&quot;&#39;$PWD&#39;&quot;:&gt;&quot;; export PS1</code></p>
+<p>效果如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata ~]# su - mysqladmin</span><br><span class="line">Last login: Mon Dec  6 21:44:05 CST 2021 on pts/0</span><br><span class="line">bigdata:mysqladmin:/usr/local/mysql:&gt;ll</span><br><span class="line">bigdata:mysqladmin:/usr/local/mysql:&gt;</span><br><span class="line">bigdata:mysqladmin:/usr/local/mysql:&gt;</span><br><span class="line">bigdata:mysqladmin:/usr/local/mysql:&gt;</span><br><span class="line">bigdata:mysqladmin:/usr/local/mysql:&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可直观地查看当前所在的目录。</p>
+<hr>
+<h4 id="重新部署"><a href="#重新部署" class="headerlink" title="重新部署"></a>重新部署</h4><p>如果部署出了问题<br>1）检查执行的目录、用户<br>2）重新部署<br>    i) rm -rf arch/*        binlog 文件，为了保持有效期，会有自动删除机制<br>    ii) rm -rf data/*        数据<br>    iii) 再次从执行下述命令开始：scripts/mysql_install_db –user=mysqladmin –basedir=/usr/local/mysql –datadir=/usr/local/mysql/data</p>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2016/05/23/hadoop%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">hadoop 伪分布式部署</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2014</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">funnyDiego</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E5%A5%BD%E7%9A%84tar%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">1.上传下载好的tar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A7%BB%E5%8A%A8%E5%88%B0-usr-local-%E7%9B%AE%E5%BD%95%E4%B8%8B"><span class="nav-number">2.</span> <span class="nav-text">2.移动到 &#x2F;usr&#x2F;local 目录下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E5%AE%89%E8%A3%85MySQL%EF%BC%88%E6%AF%94%E5%A6%82%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3.查看是否已经安装MySQL（比如：系统自带）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-tar%E5%8C%85%E8%A7%A3%E5%8E%8B%EF%BC%8C%E5%88%9B%E5%BB%BA%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">4.tar包解压，创建软连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%88%9B%E5%BB%BA-user-%E5%92%8C-group"><span class="nav-number">5.</span> <span class="nav-text">5.创建 user 和 group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%9B%E5%BB%BA-MySQL-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">6.创建 MySQL 配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E6%94%B9%E5%8F%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%EF%BC%8C%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85"><span class="nav-number">7.</span> <span class="nav-text">7.改变配置文件权限，第一次安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E9%85%8D%E7%BD%AE-mysql-%E6%9C%8D%E5%8A%A1%EF%BC%8C%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-number">8.</span> <span class="nav-text">8.配置 mysql 服务，设置开机自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%90%AF%E5%8A%A8-mysql-%E6%9C%8D%E5%8A%A1%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E5%92%8C%E7%9B%91%E5%90%AC%E7%8A%B6%E6%80%81"><span class="nav-number">9.</span> <span class="nav-text">9.启动 mysql 服务，查看服务和监听状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E7%99%BB%E5%BD%95-mysql"><span class="nav-number">10.</span> <span class="nav-text">10.登录 mysql</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81%E5%92%8C%E6%B8%85%E7%90%86%E7%94%A8%E6%88%B7"><span class="nav-number">11.</span> <span class="nav-text">11.修改密码和清理用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-bashrc"><span class="nav-number">12.</span> <span class="nav-text">12.修改配置文件 .bashrc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%E5%8A%A0"><span class="nav-number">13.</span> <span class="nav-text">附加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">14.</span> <span class="nav-text">重新部署</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

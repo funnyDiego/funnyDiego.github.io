@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="funnyDiego">
+    
+    <title>
+        
+            hadoop 探索 |
+        
+        Diego&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo_Diego.jpeg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/wy.jpeg","favicon":"/images/logo_Diego.jpeg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Welcom! Keep writing and Keep studying."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Diego&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">hadoop 探索</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/wy.jpeg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">funnyDiego</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2016-05-25 15:49:14
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hadoop/">hadoop</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>学习 Hadoop 主要参考 <a class="link"   target="_blank" rel="noopener" href="https://hadoop.apache.org/" >hadoop官网<i class="fas fa-external-link-alt"></i></a>，在实际生产过程中，注意修改 hadoop 默认的配置：启动进程时以 hostname 启用、修改配置里的默认地址。</p>
+<p>Hadoop 版本：hadoop-3.2.2</p>
+<p>Java 版本：jdk 1.8.0_45</p>
+<h4 id="1、以-hostname-启动-hadoop-进程"><a href="#1、以-hostname-启动-hadoop-进程" class="headerlink" title="1、以 hostname 启动 hadoop 进程"></a>1、以 hostname 启动 hadoop 进程</h4><p>好处：当服务器发生变更时，只需要修改 hosts 文件即可，不需要一个一个地修改服务的配置文件。</p>
+<p>比如：以 bigdata（服务器的 hostname）启动 NN（namenode），DN（datanode），SNN（secondary namenode）</p>
+<p>对应修改：</p>
+<p>1）namenode 以 bigdata 启动：修改文件 core-site.xml</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi app/hadoop/etc/hadoop/core-site.xml</span><br><span class="line">	&lt;configuration&gt;</span><br><span class="line">	    &lt;property&gt;</span><br><span class="line">	        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">	        &lt;value&gt;hdfs://bigdata:9000&lt;/value&gt;</span><br><span class="line">	    &lt;/property&gt;</span><br><span class="line">	&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2）datanode 以 bigdata 启动：修改文件 workers</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi app/hadoop/etc/hadoop/workers</span><br><span class="line">	bigdata</span><br></pre></td></tr></table></figure>
+
+<p>3）secondary namenode 以 bigdata 启动：修改文件 hdfs-site.xml</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi app/hadoop/etc/hadoop/hdfs-site.xml</span><br><span class="line">	&lt;configuration&gt;</span><br><span class="line">	    &lt;property&gt;</span><br><span class="line">	        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</span><br><span class="line">	        &lt;value&gt;bigdata:9868&lt;/value&gt;</span><br><span class="line">	    &lt;/property&gt;</span><br><span class="line">	&lt;/configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">            &lt;name&gt;dfs.namenode.secondary.https-address&lt;/name&gt;</span><br><span class="line">            &lt;value&gt;bigdata:9869&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2、hadoop-默认-tmp-目录修改"><a href="#2、hadoop-默认-tmp-目录修改" class="headerlink" title="2、hadoop 默认 tmp 目录修改"></a>2、hadoop 默认 tmp 目录修改</h4><p>从官网 <strong>core-default.xml</strong> 配置文件中查找 <strong>hadoop.tmp.dir</strong> 对应的值：**/tmp/hadoop-${user.name}**</p>
+<p>固定语法：hadoop-${user.name}，表示不同用户，e.g. hadoop-hadoop</p>
+<p>查看 /tmp 目录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata tmp]$ ll</span><br><span class="line">total 80</span><br><span class="line">drwxrwxr-x 3 hadoop hadoop 4096 Jan 22 23:22 hadoop-hadoop</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    8 Jan 24 18:01 hadoop-hadoop-datanode.pid</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    8 Jan 24 18:01 hadoop-hadoop-namenode.pid</span><br><span class="line">-rw-rw-r-- 1 hadoop hadoop    8 Jan 24 18:01 hadoop-hadoop-secondarynamenode.pid</span><br><span class="line">drwxr-xr-x 3 hadoop hadoop 4096 Jan 22 22:19 hadoop-yarn-hadoop</span><br><span class="line">drwxr-xr-x 2 hadoop hadoop 4096 Jan 24 18:01 hsperfdata_hadoop</span><br><span class="line">drwxr-xr-x 2 root   root   4096 Jan 20 17:01 hsperfdata_root</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Jan 22 22:30 jetty-0_0_0_0-9868-secondary-_-any-1077432879358563547.dir</span><br><span class="line">drwxrwxr-x 2 hadoop hadoop 4096 Jan 22 23:22 jetty-0_0_0_0-9868-secondary-_-any-1977629256625793193.dir</span><br></pre></td></tr></table></figure>
+
+<p>其中 hadoop-hadoop 则是默认的 hadoop 文件存储目录，包括 data，namenode 等；</p>
+<p>*.pid 文件：记录的是进程的端口号，控制进程</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 进程启动会写一个 pid 文件；</li>
+<li><input checked="" disabled="" type="checkbox"> 进程停止会从 pid 文件读取进程号，然后 kill 掉。</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata tmp]$ cat hadoop-hadoop-datanode.pid </span><br><span class="line">1289538</span><br><span class="line">[hadoop@bigdata tmp]$ cat hadoop-hadoop-namenode.pid </span><br><span class="line">1289409</span><br><span class="line"></span><br><span class="line">[hadoop@bigdata tmp]$ ps -ef | grep 1289409</span><br><span class="line">hadoop   1289409       1  0 Jan24 ?        00:00:50 /usr/java/jdk1.8.0_45/bin/java -Dproc_namenode -Djava.net.preferIPv4Stack=<span class="literal">true</span> -Dhdfs.audit.logger=INFO,NullAppender -Dhadoop.security.logger=INFO,RFAS -Dyarn.log.dir=/home/hadoop/app/hadoop/logs -Dyarn.log.file=hadoop-hadoop-namenode-bigdata.log -Dyarn.home.dir=/home/hadoop/app/hadoop -Dyarn.root.logger=INFO,console -Djava.library.path=/home/hadoop/app/hadoop/lib/native -Dhadoop.log.dir=/home/hadoop/app/hadoop/logs -Dhadoop.log.file=hadoop-hadoop-namenode-bigdata.log -Dhadoop.home.dir=/home/hadoop/app/hadoop -Dhadoop.id.str=hadoop -Dhadoop.root.logger=INFO,RFA -Dhadoop.policy.file=hadoop-policy.xml org.apache.hadoop.hdfs.server.namenode.NameNode</span><br><span class="line">hadoop   1293184 1293071  0 09:42 pts/0    00:00:00 grep --color=auto 1289409</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果生产仍使用默认 /tmp 目录，当 30 天后，linux 系统会自动清除数据，这里的 *.pid 文件可能会被删除，会导致：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">生产更新配置或 jar 包，DN/NN 等看似重启后生效了，但实际并没有重启成功，pid 未变。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>数据目录也在 /tmp/hadoop-hadoop 目录下，也很危险：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata dfs]$ <span class="built_in">pwd</span></span><br><span class="line">/tmp/hadoop-hadoop/dfs</span><br><span class="line">[hadoop@bigdata dfs]$ ll</span><br><span class="line">total 12</span><br><span class="line">drwx------ 3 hadoop hadoop 4096 Jan 24 18:01 data</span><br><span class="line">drwxrwxr-x 3 hadoop hadoop 4096 Jan 25 10:10 name</span><br><span class="line">drwxrwxr-x 3 hadoop hadoop 4096 Jan 25 10:10 namesecondary</span><br></pre></td></tr></table></figure>
+
+
+
+<p>基于以上情况，生产环境需要注意修改配置：</p>
+<h5 id="2-1-hadoop-tmp-目录的修改"><a href="#2-1-hadoop-tmp-目录的修改" class="headerlink" title="2.1 hadoop /tmp 目录的修改"></a>2.1 hadoop /tmp 目录的修改</h5><p>hadoop 存储目录的设置：core-site.xml</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi core-site.xml</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/tmp/hadoop-<span class="variable">$&#123;user.name&#125;</span>&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<p>[ 注意：/home/hadoop/tmp/ 替换的目录是 /tmp ]</p>
+<h5 id="2-2-pid-文件存储目录修改"><a href="#2-2-pid-文件存储目录修改" class="headerlink" title="2.2 pid 文件存储目录修改"></a>2.2 pid 文件存储目录修改</h5><p>hadoop-env.sh，新增：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi hadoop-env.sh</span><br><span class="line"><span class="comment"># where pid files are stored, /tmp by default.</span></span><br><span class="line"><span class="built_in">export</span> HADOOP_PID_DIR=/home/hadoop/tmp</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-datanode-DN-的存储目录修改"><a href="#2-3-datanode-DN-的存储目录修改" class="headerlink" title="2.3 datanode(DN) 的存储目录修改 ***"></a>2.3 datanode(DN) 的存储目录修改 ***</h5><p>hdfs-site.xml 【！！！】<br>默认的存储地址：file://${hadoop.tmp.dir}/dfs/data ==&gt; /home/hadoop/tmp/hadoop-hadoop/dfs/data (伪分布式)</p>
+<p>生产上：因数据量巨大，会存在多块磁盘，此时设置：<br>    (dfs.datanode.data.dir: 10 块物理磁盘)</p>
+<p>dfs.datanode.data.dir: /data01/dfs/dn, /data02/dfs/dn, …,/data10/dfs/dn</p>
+<p>​    也就是说：假设一块磁盘的写能力 30 M/s, 10 块磁盘则是 300 M/s，一个 300 M 的数据则只需要 1 秒即可完成写入</p>
+<p>​    =&gt; 生产上，多块磁盘是为了更大的存储空间，且更高效的读写 IO</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi hdfs-site.xml</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/data01/dfs/dn, /data02/dfs/dn, ...,/data10/dfs/dn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-4-namenode-NN-存储目录修改"><a href="#2-4-namenode-NN-存储目录修改" class="headerlink" title="2.4 namenode(NN) 存储目录修改"></a>2.4 namenode(NN) 存储目录修改</h5><p>hdfs-site.xml：</p>
+<p>默认的存储地址：file://${hadoop.tmp.dir}/dfs/name ==&gt; /home/hadoop/tmp/hadoop-hadoop/dfs/name (伪分布式)</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi hdfs-site.xml</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/home/hadoop/tmp/dfs/name&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2016/05/25/yarn%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%85%8D%E7%BD%AE/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">yarn的启动与配置</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2016/05/23/hadoop%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">hadoop 伪分布式部署</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;Comments</i>
+    </div>
+    
+
+        
+            
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2014</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">funnyDiego</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E4%BB%A5-hostname-%E5%90%AF%E5%8A%A8-hadoop-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">1、以 hostname 启动 hadoop 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81hadoop-%E9%BB%98%E8%AE%A4-tmp-%E7%9B%AE%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="nav-number">2.</span> <span class="nav-text">2、hadoop 默认 tmp 目录修改</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-hadoop-tmp-%E7%9B%AE%E5%BD%95%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 hadoop &#x2F;tmp 目录的修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-pid-%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 pid 文件存储目录修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-datanode-DN-%E7%9A%84%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 datanode(DN) 的存储目录修改 ***</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-namenode-NN-%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95%E4%BF%AE%E6%94%B9"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 namenode(NN) 存储目录修改</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

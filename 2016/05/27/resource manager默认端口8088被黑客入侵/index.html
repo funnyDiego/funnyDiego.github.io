@@ -228,8 +228,7 @@
         
 
         <div class="article-content markdown-body">
-            <p>。</p>
-<p>yarn 启动后 RM（resource manager）的默认端口 8088 被黑客入侵，植入木马程序，侵占服务器资源：CPU 使用率达 600%，登陆服务器、命令执行非常缓慢。</p>
+            <p>yarn 启动后 RM（resource manager）的默认端口 8088 被黑客入侵，植入木马程序，侵占服务器资源：CPU 使用率达 600%，登陆服务器、命令执行非常缓慢。</p>
 <p>万恶的病毒、木马程序啊，害人不浅~~~</p>
 <h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><ol>
 <li>找到挖矿程序对应的执行文件，e.g. dfhslf.sh，给这个文件赋权</li>
@@ -245,7 +244,7 @@
 <p>修改配置文件：yarn-site.xml</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi yarn-site.xml</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">	    &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">	    &lt;value&gt;bigdata:8269&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">这里的端口即前端访问页面端口：http://bigdata:8269</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\Mathartsys\AppData\Roaming\Typora\typora-user-images\1644463371606.png" alt="1644463371606"></p>
+<p> <img src="https://github.com/funnyDiego/image/blob/main/yarn_rm_page.png" alt="image"></p>
 
         </div>
 
@@ -276,7 +275,7 @@
                            href="/2016/05/25/yarn%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%85%8D%E7%BD%AE/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">yarn的启动与配置</span>
+                                <span class="post-nav-title-item">yarn 的启动与配置</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">

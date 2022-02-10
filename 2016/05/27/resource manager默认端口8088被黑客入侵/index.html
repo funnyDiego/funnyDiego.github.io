@@ -9,7 +9,7 @@
     
     <title>
         
-            自购阿里云服务器遭恶意挖矿如何自救 |
+            resource manager 默认端口8088被黑客入侵 |
         
         Diego&#39;s Blog
     </title>
@@ -166,7 +166,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">自购阿里云服务器遭恶意挖矿如何自救</span>
+            <span class="title-hover-animation">resource manager 默认端口8088被黑客入侵</span>
         </div>
 
         
@@ -184,7 +184,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2020-04-17 22:17:58
+        <i class="fas fa-edit"></i>&nbsp;2016-05-27 11:14:38
     </span>
     
     
@@ -193,11 +193,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%98%BF%E9%87%8CECS/">阿里ECS</a>&nbsp;
+                        <a href="/tags/hadoop/">hadoop</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E7%97%85%E6%AF%92/">病毒</a>&nbsp;
+                        | <a href="/tags/yarn/">yarn</a>&nbsp;
                     </li>
                 
             </ul>
@@ -207,7 +207,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>412 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>201 Words</span>
         </span>
     
     
@@ -228,34 +228,24 @@
         
 
         <div class="article-content markdown-body">
-            <p>如果在未购买云安全中心服务的情况下遇到挖矿病毒，可以采取如下措施排查和处理（本操作以Linux系统为例）：</p>
-<ol>
-<li><p>查看挖矿进程的执行文件链接。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /proc/xxx/exe           // xxx表示该进程的PID。</span><br></pre></td></tr></table></figure></li>
-<li><p>清除挖矿进程的执行文件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /home/hadoop/app/hadoop-3.2.2/sbin/ax957x/kthreaddk</span><br></pre></td></tr></table></figure></li>
-<li><p>在高CPU消耗（比如：398%）的进程中定位到挖矿进程，并杀死该进程。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 85469</span><br></pre></td></tr></table></figure></li>
-<li><p>检查您服务器的防火墙中是否存在挖矿程序的矿池地址。</p>
-<ol>
-<li><p>执行以下命令查看是否存在业务范围之外的可疑通信地址和开放端口。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure></li>
-<li><p>执行以下命令清除恶意矿池地址。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure></li>
+            <p>。</p>
+<p>yarn 启动后 RM（resource manager）的默认端口 8088 被黑客入侵，植入木马程序，侵占服务器资源：CPU 使用率达 600%，登陆服务器、命令执行非常缓慢。</p>
+<p>万恶的病毒、木马程序啊，害人不浅~~~</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><ol>
+<li>找到挖矿程序对应的执行文件，e.g. dfhslf.sh，给这个文件赋权</li>
 </ol>
-</li>
-<li><p>执行以下命令排查是否存在定时任务。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 000 dfhslf.sh</span><br></pre></td></tr></table></figure>
 
-<p>您可以根据排查的结果，对可疑的定时任务文件进行处理，防止二次入侵。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 编辑定时任务，删除</span><br><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"># 删除恶意文件定时任务</span><br><span class="line">crontab -r</span><br></pre></td></tr></table></figure></li>
-<li><p>执行以下命令检查SSH公钥中是否存在挖矿病毒，防止出现持续后门。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .ssh/authorized_keys</span><br></pre></td></tr></table></figure></li>
-<li><p>查看其他服务器中是否存在挖矿行为，防止挖矿病毒重复感染内网中的其他服务器。</p>
-</li>
-<li><p>本人的阿里云服务器恶意程序有2个：root 用户和 hadoop 用户下都有恶意文件，分别执行上述 1 - 7 的操作，执行完成，top 命令监控 CPU，或者通过阿里云安全中心管理控制台查看是否仍有恶意程序启动。</p>
-</li>
+
+
+<ol start="2">
+<li>找到执行文件，修改文件内容<br> 清空内容<br> 或在文件最前添加： exit 0</li>
 </ol>
+<p>当然，在配置 yarn 的时候，也可以修改默认端口以预防：</p>
+<p>修改配置文件：yarn-site.xml</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata hadoop]$ vi yarn-site.xml</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">	    &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</span><br><span class="line">	    &lt;value&gt;bigdata:8269&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">这里的端口即前端访问页面端口：http://bigdata:8269</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\Mathartsys\AppData\Roaming\Typora\typora-user-images\1644463371606.png" alt="1644463371606"></p>
 
         </div>
 
@@ -264,14 +254,29 @@
         
             <div class="article-nav">
                 
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/04/17/%E8%87%AA%E8%B4%AD%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%81%AD%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF%E5%A6%82%E4%BD%95%E8%87%AA%E6%95%91/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">自购阿里云服务器遭恶意挖矿如何自救</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2016/05/27/resource%20manager%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A38088%E8%A2%AB%E9%BB%91%E5%AE%A2%E5%85%A5%E4%BE%B5/"
+                           href="/2016/05/25/yarn%E5%90%AF%E5%8A%A8%E4%B8%8E%E9%85%8D%E7%BD%AE/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">resource manager 默认端口8088被黑客入侵</span>
+                                <span class="post-nav-title-item">yarn的启动与配置</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -418,7 +423,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">解决办法</span></a></li></ol>
     </div>
 </div>
         </aside>
